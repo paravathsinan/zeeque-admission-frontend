@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FileDown, FileText, Download } from "lucide-react";
+import { FileDown, FileText } from "lucide-react";
 import Image from "next/image";
 
 const downloads = [

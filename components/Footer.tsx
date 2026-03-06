@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import { toast } from "sonner";
 import { submitFooterEnquiry } from "@/app/actions";
 
 const companyLinks = [
@@ -24,14 +26,31 @@ export default function Footer() {
     const handleFooterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const { name, email, phone, message } = formData;
-        if (!name.trim() || !email.trim() || !phone.trim()) return;
+
+        if (!name.trim() || !email.trim() || !phone.trim()) {
+            toast.error("Please fill in all mandatory fields before submitting.");
+            return;
+        }
+
         setFormStatus("loading");
         try {
             const res = await submitFooterEnquiry({ name: name.trim(), email: email.trim(), phone: phone.trim(), message: message.trim() });
-            setFormStatus(res.success ? "success" : "error");
-            if (res.success) setFormData({ name: "", email: "", phone: "", message: "" });
+
+            if (res.success) {
+                setFormStatus("success");
+                setFormData({ name: "", email: "", phone: "", message: "" });
+                toast.success("Thank you! Our admissions team will contact you shortly.");
+            } else {
+                setFormStatus("error");
+                toast.error("Failed to submit enquiry. Please try again.");
+            }
         } catch {
             setFormStatus("error");
+            toast.error("An unexpected error occurred. Please try again.");
+        } finally {
+            if (formStatus === "loading") {
+                setFormStatus("idle");
+            }
         }
     };
 
@@ -51,11 +70,13 @@ export default function Footer() {
                         className="space-y-5"
                     >
                         <div>
-                            <h2 className="text-2xl font-heading font-bold leading-tight">
-                                <span className="text-[#DD5195]">Zee</span>
-                                <span className="text-[#8B5CF6]">Que</span>
-                            </h2>
-                            <p className="text-white/90 text-sm font-medium mt-0.5">Preschool</p>
+                            <Image
+                                src="/logo-new.svg"
+                                alt="ZeeQue Logo"
+                                width={260}
+                                height={80}
+                                className="h-16 md:h-20 w-auto group-hover:scale-105 transition-transform brightness-0 invert mb-3"
+                            />
                         </div>
                         <p className="text-white/90 text-sm leading-relaxed flex items-start gap-2">
                             <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[#DD5195]" />
@@ -115,7 +136,7 @@ export default function Footer() {
                             Our Company
                         </h3>
                         <ul className="space-y-2">
-                            {companyLinks.map((link, i) => (
+                            {companyLinks.map((link) => (
                                 <li key={link.label}>
                                     <Link
                                         href={link.href}

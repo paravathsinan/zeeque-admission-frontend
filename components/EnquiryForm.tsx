@@ -213,7 +213,6 @@ function calculateProgress(values: FormData): number {
         "dobYear",
         "place",
         "schoolPreference1",
-        "countryCode",
         "whatsappNumber",
     ];
 
@@ -227,13 +226,18 @@ function calculateProgress(values: FormData): number {
     });
 
     const ratio = total === 0 ? 0 : filled / total;
-    return Math.max(15, Math.min(100, Math.round(ratio * 100)));
+    return Math.min(100, Math.round(ratio * 100)); // Start at 0% smoothly
+}
+
+interface CustomSelectOption {
+    label: string;
+    value: string;
 }
 
 interface CustomSelectProps {
     label: string;
     value: string;
-    options: string[];
+    options: string[] | CustomSelectOption[];
     onChange: (val: string) => void;
     error?: boolean;
     className?: string;
@@ -273,20 +277,26 @@ function CustomSelect({ label, value, options, onChange, error, className }: Cus
                             transition={{ duration: 0.2, ease: "easeOut" }}
                             className="absolute z-50 mt-1.5 w-full max-h-48 overflow-y-auto rounded-xl border border-gray-200/80 dark:border-white/10 bg-white/95 dark:bg-[#1A1A1A]/95 backdrop-blur-md shadow-xl py-1 custom-scrollbar"
                         >
-                            {options.map((opt) => (
-                                <button
-                                    key={opt}
-                                    type="button"
-                                    onClick={() => {
-                                        onChange(opt);
-                                        setIsOpen(false);
-                                    }}
-                                    className={`w-full text-left px-3 py-2 text-sm transition-colors hover:bg-luxury-primary/10 hover:text-luxury-primary
-                                    ${value === opt ? "bg-luxury-primary/5 text-luxury-primary font-semibold" : "text-foreground/80"}`}
-                                >
-                                    {opt}
-                                </button>
-                            ))}
+                            {options.map((opt) => {
+                                const isString = typeof opt === 'string';
+                                const optValue = isString ? opt : opt.value;
+                                const optLabel = isString ? opt : opt.label;
+
+                                return (
+                                    <button
+                                        key={optValue}
+                                        type="button"
+                                        onClick={() => {
+                                            onChange(optValue);
+                                            setIsOpen(false);
+                                        }}
+                                        className={`w-full text-left px-3 py-2 text-sm transition-colors hover:bg-luxury-primary/10 hover:text-luxury-primary
+                                        ${value === optValue ? "bg-luxury-primary/5 text-luxury-primary font-semibold" : "text-foreground/80"}`}
+                                    >
+                                        {optLabel}
+                                    </button>
+                                );
+                            })}
                         </motion.div>
                     </>
                 )}
@@ -578,14 +588,17 @@ export default function EnquiryForm() {
                                             WhatsApp Number
                                         </label>
                                         <div className="flex rounded-xl border bg-white/80 dark:bg-white/5 border-gray-200/80 dark:border-white/10 overflow-hidden shadow-sm backdrop-blur-sm focus-within:border-luxury-primary/70 focus-within:ring-2 focus-within:ring-luxury-primary/40">
-                                            <div className="relative border-r border-gray-200/80 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 min-w-[100px]">
+                                            <div className="relative border-r border-gray-200/80 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 min-w-[90px]">
                                                 <CustomSelect
                                                     label="Select"
                                                     value={watch("countryCode")}
-                                                    options={countryCodes.map(c => c.code)}
+                                                    options={countryCodes.map(c => ({
+                                                        label: `${c.label} ${c.code}`,
+                                                        value: c.code
+                                                    }))}
                                                     onChange={(val) => setValue("countryCode", val, { shouldValidate: true })}
                                                     // Special styling for country code to look like a prefix
-                                                    className="border-none bg-transparent shadow-none ring-0 focus:ring-0"
+                                                    className="border-none bg-transparent shadow-none ring-0 focus:ring-0 py-2.5 px-3 h-full outline-none w-full flex items-center justify-between min-w-[80px]"
                                                 />
                                             </div>
                                             <input

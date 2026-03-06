@@ -2,7 +2,8 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { MapPin, Phone, Mail, Download, Globe, GraduationCap, Calendar, FileText, Send, Navigation, ArrowUpRight, PhoneCall, Map } from "lucide-react";
 
 export default function ContactPage() {
@@ -60,7 +61,7 @@ export default function ContactPage() {
     // ----------------------------------------------------------------------
     // Variants
     // ----------------------------------------------------------------------
-    const containerVariants = {
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -68,7 +69,7 @@ export default function ContactPage() {
         }
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 30 },
         visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
     };
@@ -109,7 +110,7 @@ export default function ContactPage() {
                         transition={{ delay: 0.2 }}
                         className="text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-lg md:text-xl font-medium"
                     >
-                        We're here to help! Whether you have a question, need support, or just want to say hello, feel free to reach out.
+                        We&#39;re here to help! Whether you have a question, need support, or just want to say hello, feel free to reach out.
                     </motion.p>
                 </div>
             </section>

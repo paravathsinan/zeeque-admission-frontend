@@ -10,12 +10,10 @@ import {
     BookOpen,
     Music,
     Palette,
-    Tent,
     Zap,
     Droplets,
     Construction,
-    Compass,
-    ArrowRight
+    Compass
 } from "lucide-react";
 
 const DaysAtZeeQue = [
@@ -71,7 +69,7 @@ export default function AboutPage() {
                             Welcome to <span className="text-luxury-primary">ZeeQue</span>
                         </h1>
                         <p className="text-xl md:text-2xl text-gray-500 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                            Where learning meets Fun, and every child's potential shines bright.
+                            Where learning meets Fun, and every child&#39;s potential shines bright.
                         </p>
                     </motion.div>
                 </div>
@@ -83,7 +81,7 @@ export default function AboutPage() {
                     <div className="mb-16">
                         <h2 className="text-4xl font-heading font-bold text-foreground mb-4">Days at ZeeQue</h2>
                         <p className="text-gray-500 dark:text-gray-400 max-w-3xl">
-                            Our daily sessions at ZeeQue are fun-filled, creative, and engaging, focusing on the child's personality development and overall well-being. These sessions include welcome circle, general assembly, meditation, morning activities, rhyme time, story sessions and outdoor activities.
+                            Our daily sessions at ZeeQue are fun-filled, creative, and engaging, focusing on the child&#39;s personality development and overall well-being. These sessions include welcome circle, general assembly, meditation, morning activities, rhyme time, story sessions and outdoor activities.
                         </p>
                     </div>
 

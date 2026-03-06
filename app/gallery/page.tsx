@@ -12,7 +12,7 @@ const galleryItems = [
         id: 1,
         title: "Nature Walk Activity",
         description: "Students visit Elephant Farm as part of their Nature Walk activity.",
-        image: "https://images.unsplash.com/photo-1581061090141-c357732ad503?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800",
         category: "Learning"
     },
     {
@@ -47,7 +47,7 @@ const galleryItems = [
         id: 6,
         title: "Independence Day",
         description: "Independence Day Flag Hosting Ceremony at ZeeQue.",
-        image: "https://images.unsplash.com/photo-1532375811400-d7d132d09c62?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1523050335102-c3251c17b3d9?auto=format&fit=crop&q=80&w=800",
         category: "Celebration"
     },
     {
@@ -61,7 +61,7 @@ const galleryItems = [
         id: 8,
         title: "Plant the Planet",
         description: "Planting 15000 saplings campaign launch.",
-        image: "https://images.unsplash.com/photo-1530836361283-2eb13038a6f3?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1414115019752-19282ff3e6c6?auto=format&fit=crop&q=80&w=800",
         category: "Green Initiative"
     },
     {
