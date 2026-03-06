@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Thank you | ZeeQue Preschool Admissions</title>
+    <meta
+      name="description"
+      content="Your enquiry has been received. Our team will contact you shortly."
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #fbf6ee;
+        --fg: #1f2937;
+        --muted: rgba(31, 41, 55, 0.7);
+        --card: rgba(255, 255, 255, 0.7);
+        --border: rgba(31, 41, 55, 0.12);
+        --btn: #0f172a;
+        --btnFg: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #081427;
+          --fg: #f8fafc;
+          --muted: rgba(248, 250, 252, 0.72);
+          --card: rgba(2, 6, 23, 0.5);
+          --border: rgba(248, 250, 252, 0.12);
+          --btn: #f8fafc;
+          --btnFg: #081427;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(
+            1000px 700px at 20% 10%,
+            rgba(236, 180, 121, 0.22),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 80% 40%,
+            rgba(110, 231, 183, 0.12),
+            transparent 55%
+          ),
+          var(--bg);
+        color: var(--fg);
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      .card {
+        width: 100%;
+        max-width: 720px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 28px;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(24px, 3vw, 34px);
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 14px;
+      }
+      a.button,
+      button.button {
+        appearance: none;
+        border: 0;
+        border-radius: 999px;
+        padding: 10px 14px;
+        background: var(--btn);
+        color: var(--btnFg);
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .secondary {
+        background: transparent !important;
+        color: var(--fg) !important;
+        border: 1px solid var(--border) !important;
+      }
+      .small {
+        font-size: 13px;
+        margin-top: 14px;
+        color: var(--muted);
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.95em;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card" role="main" aria-labelledby="title">
+      <h1 id="title">Thank you — we’ve received your enquiry.</h1>
+      <p>
+        Our admissions team will contact you shortly. You can safely close this
+        page.
+      </p>
+
+      <div class="row">
+        <a class="button" href="/">Back to home</a>
+        <button class="button secondary" type="button" id="closeBtn">
+          Close tab
+        </button>
+      </div>
+
+      <p class="small">
+        If this page opened after submitting a form, ensure your form action or
+        redirect points to a real route (for Next.js, prefer something like
+        <code>/thank-you</code>) rather than a saved development error page.
+      </p>
+    </main>
+
+    <script>
+      (function () {
+        var closeBtn = document.getElementById("closeBtn");
+        if (!closeBtn) return;
+        closeBtn.addEventListener("click", function () {
+          // Only closes tabs opened via script; otherwise no-op (browser security).
+          window.close();
+        });
+      })();
+    </script>
+  </body>
+</html>
